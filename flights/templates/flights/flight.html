@@ -12,13 +12,26 @@
 
 <!--Render passengers onboard flight-->
     <h2>Passengers:</h2>
-    <ul>
+    <ol>
         {% for passenger in passengers %}
             <li>{{ passenger }}</li>
         {% empty %}
             <li>No passengers yet...</li>
         {% endfor %}
-    </ul>
+    </ol>
+
+    <!--Add form to book a flight for another passenger-->
+    <h2>Add Passenger:</h2>
+    <form action="{% url 'book' flight.id%}" method="post">
+        {% csrf_token %}
+        <select name="passenger">
+            {% for passenger in non_passengers %}
+              <option value="{{ passenger.id }}">{{ passenger }}</option>  
+            {% endfor %}
+        </select>
+        <input type="submit">
+
+    </form>
 
     <a href="{% url 'index' %}">See all flights</a>
 {% endblock body %}
