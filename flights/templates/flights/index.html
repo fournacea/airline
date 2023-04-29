@@ -3,7 +3,15 @@
 {% block body %}
 <!--Render list of flights-->
     <h1>Flights:</h1>
+    <div class="list-group">
+        {% for flight in flights %}
+            <button type="button" class="list-group-item list-group-item-action p-2 m-2">
+                <a href="{% url 'flight' flight.id %}">Flight {{ flight.id }}: {{ flight.origin }} to {{ flight.destination }} | Estimated flight time: {{flight.duration}} minutes</a>
+            </button>
+        {% endfor %}
+      </div>
     <ul>
+        <br><br>
         {% for flight in flights %}
         <li><a href="{% url 'flight' flight.id %}">Flight {{ flight.id }}: {{ flight.origin }} to {{ flight.destination }} | Estimated flight time: {{flight.duration}} minutes</a></li>
         {% endfor %}
