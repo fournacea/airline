@@ -1,10 +1,24 @@
 {% extends "flights/layout.html" %}
 
 {% block body %}
+
+<!--Render flight info-->
     <h1>Flight {{ flight.id }}</h1>
     <ul>
         <li>Origin: {{ flight.origin }}</li>
         <li>Destination: {{ flight.destination }}</li>
         <li>Duration: {{ flight.duration }}</li>
     </ul>
+
+<!--Render passengers onboard flight-->
+    <h2>Passengers:</h2>
+    <ul>
+        {% for passenger in passengers %}
+            <li>{{ passenger }}</li>
+        {% empty %}
+            <li>No passengers yet...</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'index' %}">See all flights</a>
 {% endblock body %}
