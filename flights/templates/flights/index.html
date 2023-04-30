@@ -2,18 +2,26 @@
 
 {% block body %}
 <!--Render list of flights-->
-    <h1>Flights:</h1>
-    <div class="list-group">
-        {% for flight in flights %}
-            <button type="button" class="list-group-item list-group-item-action p-2 m-2">
-                <a href="{% url 'flight' flight.id %}">Flight {{ flight.id }}: {{ flight.origin }} to {{ flight.destination }} | Estimated flight time: {{flight.duration}} minutes</a>
-            </button>
-        {% endfor %}
-      </div>
-    <ul>
-        <br><br>
-        {% for flight in flights %}
-        <li><a href="{% url 'flight' flight.id %}">Flight {{ flight.id }}: {{ flight.origin }} to {{ flight.destination }} | Estimated flight time: {{flight.duration}} minutes</a></li>
-        {% endfor %}
-    </ul>
+    
+    <div class="border container-sm bg-secondary mt-5 pb-5">
+        <div class="container-md">
+            <h1 class="text-center mt-5 mb-3">Flights:</h1>
+            <hr>
+            <div class="list-group">
+                {% for flight in flights %}
+                <div class="row text-center m-1">
+                    <button type="button" class="list-group-item list-group-item-action p-2 m-2 bg-primary">
+                        <strong>Flight {{ flight.id }}:</strong>
+                        <a href="{% url 'flight' flight.id %}" class="text-white"> 
+                            {{ flight.origin }} to {{ flight.destination }} 
+                        </a>
+                    </button>
+                    <p>
+                        <small>*Estimated flight time: {{flight.duration}} minutes</small>
+                    </p>
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+    </div>
 {% endblock body %}
